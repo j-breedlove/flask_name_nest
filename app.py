@@ -1,13 +1,14 @@
-from flask import Flask, render_template
-import random
 import datetime as dt
 import json
+import random
+
 import requests
+from flask import Flask, render_template, request, redirect
 
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def home():
     """
     Route for the home page.
@@ -15,6 +16,12 @@ def home():
     """
     random_number = random.randint(1, 10)
     current_year = dt.datetime.now().year
+
+    # Handling the form submission
+    if request.method == 'POST':
+        name = request.form.get('name')
+        return redirect(f'/guess/{name}')
+
     return render_template('index.html', num=random_number, year=current_year)
 
 

@@ -2,14 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/app_styles.css') }}">
 </head>
-<link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
 <body>
-<h1>Random Number: {{ num }}</h1>
+    <h1>Welcome to FlaskNameNest!</h1>
+    <p>Here's a random number for you: {{ num }}</p>
+
+    <!-- Form for the guess route -->
+<form method="post">
+    <label for="name">Enter a name to guess its gender and age:</label>
+    <input type="text" id="name" name="name" required>
+    <button type="submit" class="btn">Guess</button>
+</form>
+
+    <!-- Button for the blog route -->
+    <a href="/blog" class="btn">Go to Blog</a>
+
+    <footer>
+        &copy; {{ year }} FlaskNameNest
+    </footer>
 </body>
-<a href="{{ url_for('get_blog', num=3) }}">Blog</a>
-<footer>
-    <p>&copy; {{ year }} Jason Breedlove</p>
-</footer>
 </html>
